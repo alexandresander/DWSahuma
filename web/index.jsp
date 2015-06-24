@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>BANCO SAHUMA - COOKIE TEM AQUI!</title>
+        <title>BANCO SAHUMA</title>
     </head>
     <body style=background-color:lightgreen>
     <center><h1>SAHUMA<hr></h1></center>
