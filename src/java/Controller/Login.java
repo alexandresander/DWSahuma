@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author alexandre
+ * @author alexandre, hugo e mateus
  */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
     @Override
     public void init() {
         try {
-            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoSahuma, sahuma, sahuma");
+            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoSahuma", "sahuma", "sahuma");
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,7 +88,6 @@ public class Login extends HttpServlet {
             sql.setInt(2, Integer.parseInt(request.getParameter("conta")));
 
             ResultSet resp = sql.executeQuery();
-            //Precisa tratar quando agencia ou conta inválida
             Cliente cliente = new Cliente();
             Conta conta = new Conta();
             if (resp.next()) {
