@@ -14,7 +14,8 @@ public class Conta {
     private int idConta;
     private Cliente idCliente;
     private double saldo;
-
+    private double poupanca;
+    
     public int getIdConta() {
         return idConta;
     }
@@ -37,6 +38,14 @@ public class Conta {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+    
+    public double getPoupanca() {
+        return poupanca;
+    }
+
+    public void setPoupanca(double poupanca) {
+        this.poupanca = poupanca;
     }
     
     
