@@ -1,0 +1,67 @@
+CREATE TABLE AGENCIA(
+    IDAGENCIA       INT         NOT NULL GENERATED ALWAYS AS IDENTITY,
+    NOMEAGENCIA     VARCHAR(30),
+    CONSTRAINT PK_AGENCIA
+        PRIMARY KEY(IDAGENCIA))
+
+CREATE TABLE CLIENTE(
+    IDCLIENTE   INT             NOT NULL  GENERATED ALWAYS AS IDENTITY,
+    NOME        VARCHAR(20)     NOT NULL,
+    SOBRENOME   VARCHAR(50),
+    SENHA       VARCHAR(10)     NOT NULL,
+    IDAGENCIA     INT             NOT NULL,
+    
+    CONSTRAINT PK_CLIENTE
+        PRIMARY KEY(IDCLIENTE))
+    
+CREATE TABLE CONTA (
+    IDCONTA INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+    IDCLIENTE INT NOT NULL, 
+    SALDO DOUBLE NOT NULL DEFAULT 0,
+    POUPANCA DOUBLE NOT NULL DEFAULT 0, 
+
+    CONSTRAINT PK_CONTA
+        PRIMARY KEY(IDCONTA))
+
+
+CREATE TABLE EXTRATO(
+    IDEXTRATO   INT             NOT NULL    GENERATED ALWAYS AS IDENTITY,
+    IDCONTA	INT		NOT NULL,
+    MES		INT		NOT NULL,
+    DATATRANS  	DATE		NOT NULL,
+    AGORIGEM    INT             NOT NULL,
+    VALOR       DOUBLE		NOT NULL,
+    DESCRICAO VARCHAR(20)       NOT NULL,
+    CONSTRAINT PK_EXTRATO
+        PRIMARY KEY (IDCONTA,IDEXTRATO))
+
+ALTER TABLE CONTA
+        ADD CONSTRAINT FK1_CONTA
+                FOREIGN KEY(IDCLIENTE) REFERENCES CLIENTE(IDCLIENTE)
+                       ON DELETE RESTRICT ON UPDATE RESTRICT
+
+ALTER TABLE CLIENTE
+	ADD CONSTRAINT FK1_CLIENTE
+        	FOREIGN KEY(IDAGENCIA) REFERENCES AGENCIA(IDAGENCIA)
+			ON DELETE RESTRICT ON UPDATE RESTRICT
+
+ALTER TABLE EXTRATO
+	ADD CONSTRAINT FK1_EXTRATO
+        	FOREIGN KEY(IDCONTA) REFERENCES CONTA(IDCONTA)
+			ON DELETE RESTRICT ON UPDATE RESTRICT
+
+
+insert into agencia values (default,'SAHUMA - CAXIAS')
+insert into agencia values (default,'SAHUMA - NITERÓI')
+insert into agencia values (default,'SAHUMA - MARACANÃ')
+
+insert into cliente values (default,'hugo','andrade','1234',3)
+insert into cliente values (default,'vanessa','sena','nessa',3)
+insert into cliente values (default,'alexandre','sander','mito',2)
+insert into cliente values (default,'mateus','barros','gui',1)
+
+
+insert into conta values(default,1,default,default)
+insert into conta values(default,2,default,default)
+insert into conta values(default,3,default,default)
+insert into conta values(default,4,default,default)
