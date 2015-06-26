@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
     @Override
     public void init() {
         try {
-            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/Sahuma", "sahuma", "sahuma");
+            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/BancoSahuma, sahuma, sahuma");
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
